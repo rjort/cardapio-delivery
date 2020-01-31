@@ -1,25 +1,14 @@
 <template>
-  <header class="header">
-    <div class="navbar container">
-      <div class="nav-items">
-        <a class="logo" href="#">Logo</a>
-        <ul class="nav-links">
-          <li>
-            <a href="#">Início</a>
-          </li>
-          <li>
-            <a href="#">Contato</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header> 
+  <v-app-bar color="orange">
+    <v-img src="@/assets/logo.png" max-width="80"></v-img>
+    <v-spacer></v-spacer>
+    <v-btn text>Início</v-btn>
+    <v-btn text>Contato</v-btn>
+  </v-app-bar>
 </template>
 
 <script>
-export default {
-  name: "Navbar"
-};
+export default {};
 </script>
 
 <style>
