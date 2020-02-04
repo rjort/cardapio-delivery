@@ -7,7 +7,7 @@
         <v-list-item-content>
           <v-list-item-title><strong>Tamanho:</strong></v-list-item-title>
           <v-radio-group v-model="newSize" row>
-            <v-radio class="py-2" v-for="s in size" :key="s" :label="s.value" :value="s.name"></v-radio>
+            <v-radio class="py-2" v-for="s in size" :key="s" :label="s.name" :value="s.value"></v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
@@ -15,7 +15,7 @@
         <v-list-item-content>
           <v-list-item-title><strong>Tipo de Massa:</strong></v-list-item-title>
           <v-radio-group v-model="newType" row>
-            <v-radio class="py-2" v-for="(t, i) in type" :key="t" :label="t" :value="type[i]"></v-radio>
+            <v-radio class="py-2" v-for="(t,i) in type" :key="t" :label="t" :value="type[i]"></v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
@@ -23,7 +23,7 @@
         <v-list-item-content>
           <v-list-item-title><strong>Molho:</strong></v-list-item-title>
           <v-radio-group v-model="newSauce" row>
-            <v-radio class="py-2" v-for="(s, i) in sauce" :key="s" :label="s" :value="sauce[i]"></v-radio>
+            <v-radio class="py-2" v-for="s in sauce" :key="s" :label="s.name" :value="s.value"></v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
@@ -31,7 +31,7 @@
         <v-list-item-content>
           <v-list-item-title><strong>Proteinas:</strong></v-list-item-title>
           <v-radio-group v-model="newProtein" row>
-            <v-radio class="py-2" v-for="(p, i) in protein" :key="p" :label="p" :value="protein[i]"></v-radio>
+            <v-radio class="py-2" v-for="p in protein" :key="p" :label="p.name" :value="p.value"></v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
@@ -73,8 +73,8 @@
               class="px-3"
               v-for="a in aditional"
               :key="a"
-              :label="a"
-              :value="a"
+              :label="a.name"
+              :value="a.value"
               v-model="newAditional"
             ></v-checkbox>
           </v-row>
@@ -109,13 +109,22 @@ export default {
     newIngredient: [],
     newAditional: [],
     size: [
-      { name: "Potito", value: "Potito - R$ 13.00" },
-      { name: "Bambino", value: "Bambino - R$ 15.00" },
-      { name: "Mama Mia", value: "Mama Mia - R$ 18.00" }
+      { name: "Potito - R$ 13.00",    value: "Potito" },
+      { name: "Bambino - R$ 15.00",   value: "Bambino" },
+      { name: "Mama Mia - R$ 18.00",  value: "Mama Mia" }
     ],
     type: ["Penne", "Talharim"],
-    sauce: ["Tomate", "Branco", "Rosé", "Cheddar + R$ 3.00"],
-    protein: ["Carne", "Frango", "Camarão + R$ 5.00"],
+    sauce: [
+      {name:"Tomate",             value: "Tomate"},
+      {name:"Branco",             value: "Branco"},
+      {name:"Rosé",               value: "Rose"},
+      {name:"Cheddar + R$ 3.00",  value: "Cheddar"}
+    ],
+    protein: [
+      {name:"Carne",              value:"Carne"},
+      {name:"Frango",             value:"Frango"},
+      {name:"Camarão + R$ 5.00",  value:"Camarao"}
+    ],
     temper: [
       "Pimenta Calabresa",
       "Manjeiricão",
@@ -141,21 +150,104 @@ export default {
       "Uva Passa"
     ],
     aditional: [
-      "Frango + R$ 3.00",
-      "Bacon + R$ 2.00",
-      "Calabresa + R$ 2.00",
-      "Cheddar + R$ 2.00",
-      "Queijo + R$ 2.00",
-      "Presunto + R$ 2.00",
-      "Uva Passa + R$ 1.00",
-      "Alho + R$ 1.00"
+      {name: "Frango  + R$ 3.00",     value: "Frango"},
+      {name: "Bacon + R$ 2.00",       value: "Bacon"},
+      {name: "Calabresa + R$ 2.00",   value: "Calabresa"},
+      {name: "Cheddar + R$ 2.00",     value: "Cheddar"},
+      {name: "Queijo + R$ 2.00",      value: "Queijo"},
+      {name: "Presunto + R$ 2.00",    value: "Presunto"},
+      {name: "Uva Passa + R$ 1.00",   value: "Uva Passa"},
+      {name: "Alho + R$ 1.00",        value: "Alho"},
     ],
+
     _tempTemper: "",
     _tempIngredients: "",
     _tempAditional: "",
+
+    priceTotalOrder: 0.0,
+    priceTotalCart: 0.0,
+    priceTotalAditional: 0.0,
+
+    _tempPriceAditional: 0.0,
+    _tempPriceSize: 0.0,
+    _tempPriceProtein: 0.0,
+    _tempPriceSauce: 0.0,
   }),
 
   methods: {
+    addOrder() {
+      const order = {
+        id: this.id,
+        size: this.newSize,
+        type: this.newType,
+        sauce: this.newSauce,
+        protein: this.newProtein,
+        temper: this.newTemper,
+        ingredients: this.newIngredient,
+        aditional: this.newAditional,
+        priceOrder: this.priceTotalOrder,
+        priceCart: this.priceTotalCart,
+        priceAditional: this.priceTotalAditional,
+      };
+
+      this.id++;
+      this.cartJoinItens(order);
+      this.joinOtherItens(order);
+      this.addPrices();
+      this.cart.push(order);
+      this.refreshOrder();
+      this.sendToCartEvent();
+      this.cartStringEvent();
+    },
+
+    addPrices() {
+
+      // ADICIONA PRECO NO TIPO DE PROTEINA
+      if(this.newProtein.value == "Camarao") {
+        this._tempPriceProtein = 5.0
+      } else {
+        this._tempPriceProtein = 0.0
+      }
+
+      // ADICIONA O SOMATORIO DOS PRECOS NOS ADICIONAIS
+      if(this.newAditional.length > 0) {
+        for (let index = 0; index < this.newAditional.length; index++) {
+          if(this.newAditional[index] == "Frango") {
+            this._tempPriceAditional += 3.0
+          }
+          else if (this.newAditional[index] == "Bacon") {
+            this._tempPriceAditional += 2.0
+          }
+          else if (this.newAditional[index] == "Calabresa") {
+            this._tempPriceAditional += 2.0
+          }
+          else if (this.newAditional[index] == "Cheddar") {
+            this._tempPriceAditional += 2.0
+          }
+          else if (this.newAditional[index] == "Queijo") {
+            this._tempPriceAditional += 2.0
+          }
+          else if (this.newAditional[index] == "Presunto") {
+            this._tempPriceAditional += 2.0
+          }
+          else if (this.newAditional[index] == "Uva Passa") {
+            this._tempPriceAditional += 1.0
+          }
+          else if (this.newAditional[index] == "Alho") {
+            this._tempPriceAditional += 1.0
+          }
+          else {
+            alert('error')
+          }
+        }
+      } else {
+        this._tempPriceAditional = 0.0
+      }
+
+      console.log(this._tempPriceAditional)
+      console.log(this._tempPriceProtein)
+    },
+
     disabledCartButton() {
       if (
         this.newSize &&
@@ -168,26 +260,6 @@ export default {
         return false;
       }
       return true;
-    },
-
-    addOrder() {
-      const order = {
-        id: this.id,
-        size: this.newSize,
-        type: this.newType,
-        sauce: this.newSauce,
-        protein: this.newProtein,
-        temper: this.newTemper,
-        ingredients: this.newIngredient,
-        aditional: this.newAditional
-      };
-      this.id++;
-      this.cartJoinItens(order);
-      this.joinOtherItens(order);
-      this.cart.push(order);
-      this.refreshOrder();
-      this.sendToCartEvent();
-      this.cartStringEvent();
     },
 
     refreshOrder() {
@@ -242,13 +314,8 @@ export default {
       this.cartString = this.printCart.join(" ");
     },
 
-    sendToCartEvent() {
-      EventBus.$emit("send-to-cart", this.cart);
-    },
-
-    cartStringEvent() {
-      EventBus.$emit("cart-string", this.cartString);
-    },
+    sendToCartEvent() { EventBus.$emit("send-to-cart", this.cart); },
+    cartStringEvent() { EventBus.$emit("cart-string", this.cartString); },
 
     joinOtherItens(order) {
       this._tempTemper = order.temper.join(', ');
