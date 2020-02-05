@@ -1,27 +1,32 @@
 <template>
   <v-app>
-      <NavBar />
-      <v-content>
-        <router-view/>
-      </v-content>
+    <NavBar />
+    <v-content>
+      <router-view />
+    </v-content>
   </v-app>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    NavBar,
+    NavBar
   },
 
   data: () => ({
     //
-  }),
-}
+  })
+};
 </script>
 
 <style>
-
+.back {
+  background: url("assets/jr-delivery-background.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
 </style>

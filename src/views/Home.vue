@@ -1,39 +1,23 @@
 <template>
-  <div class="home">
-      <div class="content">
-      <v-container fluid fill-height class="back">
-        <v-row>
-          <CardForm />
-          <CardCart />
-        </v-row>
-      </v-container>
-    </div>
-  </div>
+  <v-container class="back d-flex justify-center" fluid>
+    <v-row align="center">
+      <v-col class="text-center" cols="12" sm="12">
+        <div class="my-5">
+          <v-btn x-large width="365" to="/menu" color="orange darken-3">Fazer Pedido</v-btn>
+        </div>
+        <div>
+          <v-btn x-large width="365" href="tel://5575998943730" color="green">Ligar</v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import CardForm from '@/components/CardForm.vue';
-import CardCart from '@/components/CardCart.vue';
-
-
 export default {
-  name: 'home',
-  components: {
-    CardForm,
-    CardCart,
-  },
+  name: "home"
 };
 </script>
 
 <style>
-  .content {
-    position: relative;
-  }
-  .back {
-    background: url('../assets/jr-delivery-background.jpg');
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-  }
 </style>
