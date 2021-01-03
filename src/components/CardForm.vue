@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" sm="7">
     <v-card elevation="6">
-      <v-card-title primary-title class="justify-center">Monte seu Macarrão</v-card-title>
+      <v-card-title id="titulo" primary-title class="justify-center">Monte seu Macarrão</v-card-title>
       <v-divider class="mx-4"></v-divider>
       <v-list-item>
         <v-list-item-content>
