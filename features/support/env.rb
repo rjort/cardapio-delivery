@@ -7,6 +7,6 @@ require 'capybara/cucumber'
 # )
 
 Capybara.configure do |config| 
-  config.default_driver = :selenium_chrome
+  config.default_driver = :selenium
   # config.driver_path = "C:\\Users\\reuter.sobrinho\\.webdriver\\chrome_driver\\bin\\chromedriver.exe"
 end
