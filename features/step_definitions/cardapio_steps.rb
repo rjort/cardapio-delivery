@@ -1,41 +1,52 @@
 Dado('que esteja na pagina principal') do
-  visit 'http://localhost:8080/'
-  sleep 5
+  CardapioDelivery::main_page
 end
 
 Quando('clicar no botão Fazer Pedido') do
-  find('#menu-btn').click
+  CardapioDelivery::MainPage.cardapio_button_click
 end
 
-Então('devera exibir no titulo do card {string}') do |string|
-  find('#titulo')
-  sleep 5
+Então('devera exibir no titulo do card {string}') do |title|
+  CardapioDelivery::MenuPage.check_title(title) do |title|
+    expect(CardapioDelivery::MenuPage.title_menu).to have_content title
+  end
+end
+
+Dado('que esteja na pagina de menu') do
+  CardapioDelivery::menu_page
 end
 
 Quando('selecionar todos os ingredientes') do
-  pending # Write code here that turns the phrase above into concrete actions
+  CardapioDelivery::MenuPage.select_options_without_aditional
+
+  #  CardapioDelivery::MenuPage.select_options_without_aditional do |value|
+  #   expect(value[:tamanho]).to be_checked
+  #   expect(value[:massa]).to be_checked
+  #   expect(value[:molho]).to be_checked
+  #   expect(value[:proteina]).to be_checked
+  # end
 end
 
-Então('o botão Adicionar ao Carrinho estara libererado') do
-  pending # Write code here that turns the phrase above into concrete actions
+Então('o botão Adicionar ao Carrinho estara liberado') do
+end
+
+Então('devera exibir no carrinho numero do pedido') do
 end
 
 Quando('não selecionar todos os ingredientes') do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Então('o botão Adicionar ao Carrinho não estera liberado') do
-  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Então('devera exibir alerta {string}') do |string|
 end
 
 Dado('tenha adicionado produtos ao carrinho') do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Quando('clicar no botão Finalizar Pedido') do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Então('mostrar no paragrafo na pagina informações do pedido') do
-  pending # Write code here that turns the phrase above into concrete actions
 end
