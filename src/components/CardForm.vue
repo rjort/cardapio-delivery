@@ -6,32 +6,60 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title><strong>Tamanho:</strong></v-list-item-title>
-          <v-radio-group v-model="newSize" row>
-            <v-radio class="py-2" v-for="s in size" :key="s" :label="s.name" :value="s.value"></v-radio>
+          <v-radio-group name="tamanhos" v-model="newSize" row>
+            <v-radio
+              name="tamanho"
+              class="py-2"
+              v-for="s in size" 
+              :key="s"
+              :label="s.name"
+              :value="s.value">
+            </v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title><strong>Tipo de Massa:</strong></v-list-item-title>
-          <v-radio-group v-model="newType" row>
-            <v-radio class="py-2" v-for="(t,i) in type" :key="t" :label="t" :value="type[i]"></v-radio>
+          <v-radio-group name="massas" v-model="newType" row>
+            <v-radio
+              name="massa"
+              class="py-2"
+              v-for="(t,i) in type"
+              :key="t"
+              :label="t"
+              :value="type[i]">
+            </v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title><strong>Molho:</strong></v-list-item-title>
-          <v-radio-group v-model="newSauce" row>
-            <v-radio class="py-2" v-for="s in sauce" :key="s" :label="s.name" :value="s.value"></v-radio>
+          <v-radio-group name="molhos" v-model="newSauce" row>
+            <v-radio
+              name="molho"
+              class="py-2"
+              v-for="s in sauce"
+              :key="s"
+              :label="s.name"
+              :value="s.value">
+            </v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title><strong>Proteinas:</strong></v-list-item-title>
-          <v-radio-group v-model="newProtein" row>
-            <v-radio class="py-2" v-for="p in protein" :key="p" :label="p.name" :value="p.value"></v-radio>
+          <v-radio-group name="proteinas" v-model="newProtein" row>
+            <v-radio
+              name="proteina"
+              class="py-2"
+              v-for="p in protein"
+              :key="p"
+              :label="p.name"
+              :value="p.value">
+            </v-radio>
           </v-radio-group>
         </v-list-item-content>
       </v-list-item>
@@ -40,6 +68,7 @@
           <v-list-item-title><strong>Temperos:</strong></v-list-item-title>
           <v-row>
             <v-checkbox
+              name="temperos"
               class="px-3"
               v-for="t in temper"
               :key="t"
@@ -55,6 +84,7 @@
           <v-list-item-title><strong>Ingredientes:</strong></v-list-item-title>
           <v-row>
             <v-checkbox
+              name="ingredientes"
               class="px-3"
               v-for="ing in ingredients"
               :key="ing"
@@ -70,6 +100,7 @@
           <v-list-item-title><strong>Adicionais:</strong></v-list-item-title>
           <v-row>
             <v-checkbox
+              name="adicionais"
               class="px-3"
               v-for="a in aditional"
               :key="a"

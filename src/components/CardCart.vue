@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" sm="5">
     <v-card elevation="6">
-      <v-card-title primary-title class="justify-center">Meus Pedidos</v-card-title>
+      <v-card-title id="title-cart" primary-title class="justify-center">Meus Pedidos</v-card-title>
       <v-divider class="mx-4"></v-divider>
       <v-list-item v-for="order in cart" :key="order.id">
         <v-list-item-content>
