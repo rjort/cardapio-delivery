@@ -1,5 +1,8 @@
 require 'capybara'
 require 'capybara/cucumber'
+require 'cucumber/term/ansicolor'
+require 'pry'
+require 'pry-byebug'
 
 # Capybara::Selenium::Driver.new(app,
 #                                :browser => :chrome,
