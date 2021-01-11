@@ -1,5 +1,8 @@
 require 'capybara'
 require 'capybara/cucumber'
+require 'cucumber/term/ansicolor'
+require 'pry'
+require 'pry-byebug'
 
 # Capybara::Selenium::Driver.new(app,
 #                                :browser => :chrome,
@@ -7,6 +10,8 @@ require 'capybara/cucumber'
 # )
 
 Capybara.configure do |config| 
-  config.default_driver = :selenium
+  config.default_driver = :selenium_chrome
+  config.app_host = 'http://localhost:8080'
+  # config.javascript_driver = :selenium_chrome_headless
   # config.driver_path = "C:\\Users\\reuter.sobrinho\\.webdriver\\chrome_driver\\bin\\chromedriver.exe"
 end
