@@ -5,7 +5,7 @@
       <v-divider class="mx-4"></v-divider>
       <v-list-item v-for="order in cart" :key="order.id">
         <v-list-item-content>
-          <v-list-item-title>
+          <v-list-item-title id="order-id">
             <strong>Pedido:</strong> {{order.id}}
           </v-list-item-title>
           <p><strong>Tamanho:</strong> {{order.size}}</p>
@@ -16,8 +16,9 @@
           <p><strong>Adicionais:</strong> {{order.aditional}}</p>
         </v-list-item-content>
       </v-list-item>
-      <v-card-actions>
+      <v-card-actions id="btn-actions">
         <v-btn
+          id="finish"
           :href="this.baseUrl + this.cartString"
           v-show="cart.length"
           color="orange"

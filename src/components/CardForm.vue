@@ -112,8 +112,9 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-card-actions>
+      <v-card-actions id="field-order">
         <v-btn
+          id="add-order"
           @click="addOrder"
           color="orange"
           :disabled="disabledCartButton()"
