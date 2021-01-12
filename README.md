@@ -1,22 +1,21 @@
 # cardapio-delivery
+## Rodar Testes:
 
-# TODO:
+### instalar gems
+```
+bundler install
+```
 
-Acrescentar:
+### rodar todos os cenarios
+```
+rake all
+```
 
-## Basico
-> :green_square:	Adicionar nas opções de 'radio-box' 'deselecionar' ao clicar novamente na mesma opcao.
-
-> :green_square:	Alterar nome do titulo das seleção de 'Ingredientes' e 'Adicionais'.
-
-> :green_square:	Remover ingredientes repetidos de 'Temperos' em 'Ingredientes'.
-
-## Avançado
-> :green_square:	Portar para Vue3 estrutura do projeto.
->> Codigo e etc..
-
-> :green_square:	Refatorar design.
-
+### rodar cenario especifico
+```
+rake <task_name>
+```
+> verificar arquivo Rakefile
 
 #
 
@@ -42,3 +41,21 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#
+## TODO:
+
+Acrescentar:
+
+### Basico
+> :green_square:	Adicionar nas opções de 'radio-box' 'deselecionar' ao clicar novamente na mesma opcao.
+
+> :green_square:	Alterar nome do titulo das seleção de 'Ingredientes' e 'Adicionais'.
+
+> :green_square:	Remover ingredientes repetidos de 'Temperos' em 'Ingredientes'.
+
+### Avançado
+> :green_square:	Portar para Vue3 estrutura do projeto.
+>> Codigo e etc..
+
+> :green_square:	Refatorar design.
