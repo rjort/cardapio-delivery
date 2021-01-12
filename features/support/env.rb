@@ -1,5 +1,6 @@
 require 'capybara'
 require 'capybara/cucumber'
+require 'cucumber/rake/task'
 require 'cucumber/term/ansicolor'
 require 'pry'
 require 'pry-byebug'
